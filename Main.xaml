@@ -1,0 +1,159 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="Main1" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="478,1623.33333333333" sap2010:WorkflowViewState.IdRef="Main_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:s="clr-namespace:SimpleJson;assembly=RestSharp" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>SimpleJson</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>UiPath.Mail</AssemblyReference>
+      <AssemblyReference>RestSharp</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Plugin.Workflow</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="Connect REST Orchestrator" sap:VirtualizedContainerService.HintSize="438,1503.33333333333" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Name="response" />
+      <Variable x:TypeArguments="x:String" Name="accessToken" />
+      <Variable x:TypeArguments="s:JsonObject" Name="deserializedJSON" />
+      <Variable x:TypeArguments="x:String" Name="RobotsArray" />
+      <Variable x:TypeArguments="ui:GenericValue" Name="orchestratorURL" />
+      <Variable x:TypeArguments="ui:GenericValue" Name="orchestratorTennant" />
+      <Variable x:TypeArguments="ui:GenericValue" Name="orchestratorUser" />
+      <Variable x:TypeArguments="ui:GenericValue" Name="orchestratorPassword" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:InputDialog Options="{x:Null}" DisplayName="Input Dialog" sap:VirtualizedContainerService.HintSize="416,92" sap2010:WorkflowViewState.IdRef="InputDialog_1" IsPassword="False" Label="orchestrator url" Title="Enter orchestrator URL ">
+      <ui:InputDialog.Result>
+        <OutArgument x:TypeArguments="ui:GenericValue">[orchestratorURL]</OutArgument>
+      </ui:InputDialog.Result>
+    </ui:InputDialog>
+    <ui:InputDialog Options="{x:Null}" DisplayName="Input Dialog" sap:VirtualizedContainerService.HintSize="416,92" sap2010:WorkflowViewState.IdRef="InputDialog_2" IsPassword="False" Label="orchestrator tennant" Title="Enter orchestrator tennant ">
+      <ui:InputDialog.Result>
+        <OutArgument x:TypeArguments="ui:GenericValue">[orchestratorTennant]</OutArgument>
+      </ui:InputDialog.Result>
+    </ui:InputDialog>
+    <ui:InputDialog Options="{x:Null}" DisplayName="Input Dialog" sap:VirtualizedContainerService.HintSize="416,92" sap2010:WorkflowViewState.IdRef="InputDialog_3" IsPassword="False" Label="orchestrator user" Title="Enter orchestrator user ">
+      <ui:InputDialog.Result>
+        <OutArgument x:TypeArguments="ui:GenericValue">[orchestratorUser]</OutArgument>
+      </ui:InputDialog.Result>
+    </ui:InputDialog>
+    <ui:InputDialog Options="{x:Null}" DisplayName="Input Dialog" sap:VirtualizedContainerService.HintSize="416,92.8" sap2010:WorkflowViewState.IdRef="InputDialog_4" IsPassword="False" Label="orchestrator password" Title="Enter orchestrator password ">
+      <ui:InputDialog.Result>
+        <OutArgument x:TypeArguments="ui:GenericValue">[orchestratorPassword]</OutArgument>
+      </ui:InputDialog.Result>
+    </ui:InputDialog>
+    <ui:HttpClient Body="{x:Null}" ConsumerKey="{x:Null}" ConsumerSecret="{x:Null}" ContinueOnError="{x:Null}" OAuth1Token="{x:Null}" OAuth1TokenSecret="{x:Null}" OAuth2Token="{x:Null}" Password="{x:Null}" ResourcePath="{x:Null}" StatusCode="{x:Null}" Username="{x:Null}" AcceptFormat="JSON" BodyFormat="application/json" ClientCertificate="[Nothing]" ClientCertificatePassword="[Nothing]" DisplayName="Authenticate" EndPoint="[orchestratorURL]" sap:VirtualizedContainerService.HintSize="416,22.4" sap2010:WorkflowViewState.IdRef="HttpClient_2" Method="POST" Result="[response]" TimeoutMS="6000">
+      <ui:HttpClient.Attachments>
+        <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
+      </ui:HttpClient.Attachments>
+      <ui:HttpClient.Headers>
+        <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
+      </ui:HttpClient.Headers>
+      <ui:HttpClient.Parameters>
+        <InArgument x:TypeArguments="x:String" x:Key="tenancyName">[orchestratorTennant]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="usernameOrEmailAddress">[orchestratorUser]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="password">[orchestratorPassword]</InArgument>
+      </ui:HttpClient.Parameters>
+      <ui:HttpClient.UrlSegments>
+        <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
+      </ui:HttpClient.UrlSegments>
+    </ui:HttpClient>
+    <ui:DeserializeJson x:TypeArguments="s:JsonObject" DisplayName="Deserialize JSON" sap:VirtualizedContainerService.HintSize="416,60" sap2010:WorkflowViewState.IdRef="DeserializeJson`1_2" JsonObject="[deserializedJSON]" JsonString="[response]" />
+    <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" Buttons="Ok" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="416,60" sap2010:WorkflowViewState.IdRef="MessageBox_2" Text="[deserializedJSON(&quot;result&quot;).ToString]" TopMost="True" />
+    <Assign DisplayName="Assign accessToken" sap:VirtualizedContainerService.HintSize="416,60" sap2010:WorkflowViewState.IdRef="Assign_1">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[AccessToken]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[deserializedJSON("result").ToString]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <ui:HttpClient Body="{x:Null}" ConsumerKey="{x:Null}" ConsumerSecret="{x:Null}" ContinueOnError="{x:Null}" OAuth1Token="{x:Null}" OAuth1TokenSecret="{x:Null}" OAuth2Token="{x:Null}" Password="{x:Null}" ResourcePath="{x:Null}" StatusCode="{x:Null}" Username="{x:Null}" AcceptFormat="JSON" BodyFormat="application/json" ClientCertificate="[Nothing]" ClientCertificatePassword="[Nothing]" DisplayName="GetRobots" EndPoint="https://win-er7vkb36reg/odata/Robots" sap:VirtualizedContainerService.HintSize="416,22.4" sap2010:WorkflowViewState.IdRef="HttpClient_3" Method="GET" Result="[RobotsArray]" TimeoutMS="6000">
+      <ui:HttpClient.Attachments>
+        <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
+      </ui:HttpClient.Attachments>
+      <ui:HttpClient.Headers>
+        <InArgument x:TypeArguments="x:String" x:Key="Authorization">["Bearer " + accessToken]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="Content-Type">aplication/json</InArgument>
+      </ui:HttpClient.Headers>
+      <ui:HttpClient.Parameters>
+        <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
+      </ui:HttpClient.Parameters>
+      <ui:HttpClient.UrlSegments>
+        <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
+      </ui:HttpClient.UrlSegments>
+    </ui:HttpClient>
+    <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" Buttons="Ok" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="416,60" sap2010:WorkflowViewState.IdRef="MessageBox_1" Text="[RobotsArray]" TopMost="True" />
+    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="416,325.6" sap2010:WorkflowViewState.IdRef="CommentOut_1">
+      <ui:CommentOut.Body>
+        <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="336.8,247.2" sap2010:WorkflowViewState.IdRef="Sequence_2">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ui:HttpClient ConsumerKey="{x:Null}" ConsumerSecret="{x:Null}" ContinueOnError="{x:Null}" OAuth1Token="{x:Null}" OAuth1TokenSecret="{x:Null}" OAuth2Token="{x:Null}" Password="{x:Null}" ResourcePath="{x:Null}" StatusCode="{x:Null}" Username="{x:Null}" AcceptFormat="JSON" Body="[&quot;{&#xA;  &quot;&quot;LicenseKey&quot;&quot;: &quot;&quot;string&quot;&quot;,&#xA;  &quot;&quot;MachineName&quot;&quot;: &quot;&quot;string&quot;&quot;,&#xA;  &quot;&quot;MachineId&quot;&quot;: 12,&#xA;  &quot;&quot;Name&quot;&quot;: &quot;&quot;TestAPIRobot3&quot;&quot;,&#xA;  &quot;&quot;Username&quot;&quot;: &quot;&quot;hdserver\\robot34&quot;&quot;,&#xA;  &quot;&quot;Description&quot;&quot;: &quot;&quot;Created via API&quot;&quot;,&#xA;  &quot;&quot;Version&quot;&quot;: &quot;&quot;string&quot;&quot;,&#xA;  &quot;&quot;Type&quot;&quot;: &quot;&quot;Development&quot;&quot;,&#xA;  &quot;&quot;HostingType&quot;&quot;: &quot;&quot;Standard&quot;&quot;,&#xA;  &quot;&quot;Password&quot;&quot;: &quot;&quot;robotP4$$&quot;&quot;,&#xA;  &quot;&quot;CredentialType&quot;&quot;: &quot;&quot;Default&quot;&quot;,&#xA;  &quot;&quot;RobotEnvironments&quot;&quot;: &quot;&quot;string&quot;&quot;&#xA;  }&#xA;&quot;]" BodyFormat="application/json" ClientCertificate="[Nothing]" ClientCertificatePassword="[Nothing]" DisplayName="Create Robot" EndPoint="https://win-er7vkb36reg/odata/Robots" sap:VirtualizedContainerService.HintSize="314.4,22.4" sap2010:WorkflowViewState.IdRef="HttpClient_4" Method="POST" Result="[response]" TimeoutMS="6000">
+            <ui:HttpClient.Attachments>
+              <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
+            </ui:HttpClient.Attachments>
+            <ui:HttpClient.Headers>
+              <InArgument x:TypeArguments="x:String" x:Key="Authorization">["Bearer " + accessToken]</InArgument>
+            </ui:HttpClient.Headers>
+            <ui:HttpClient.Parameters>
+              <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
+            </ui:HttpClient.Parameters>
+            <ui:HttpClient.UrlSegments>
+              <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
+            </ui:HttpClient.UrlSegments>
+          </ui:HttpClient>
+          <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" Buttons="Ok" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="314.4,60" sap2010:WorkflowViewState.IdRef="MessageBox_3" Text="[&quot;New robot created &quot; + response]" TopMost="True" />
+        </Sequence>
+      </ui:CommentOut.Body>
+    </ui:CommentOut>
+  </Sequence>
+</Activity>
